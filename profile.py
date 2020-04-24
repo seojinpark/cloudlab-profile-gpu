@@ -89,9 +89,9 @@ for name in node_names:
 #     fslink.addInterface(iface)
 #     fslink.addInterface(fsnode.interface)
     lan.addInterface(fsnode.interface)
-    # Special attributes for this link that we must use.
-    fslink.best_effort = True
-    fslink.vlan_tagging = True
+    # # Special attributes for this link that we must use.
+    # fslink.best_effort = True
+    # fslink.vlan_tagging = True
 
 
 pc.printRequestRSpec(rspec)
