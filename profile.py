@@ -17,7 +17,8 @@ pc = portal.Context()
 images = [ ("UBUNTU18-64-STD", "Ubuntu 18.04") ]
 
 types = [ ("c240g5", "c240g5 (NVIDIA 12GB P100 GPU, dual-port 10Gb NIC)"),
-          ("c220g5", "c220g5 (for NFS node, no GPU)")]
+          ("c4130", "c4130 (4x NVIDIA 16GB Tesla V100 GPU, no networking?)"),
+          ("c220g2", "c220g2 (for NFS node, no GPU)"), ("c220g5", "c220g5 (for NFS node, no GPU)")]
 
 num_nodes = range(1, 32)
 

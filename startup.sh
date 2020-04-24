@@ -112,6 +112,8 @@ done
 
 if [ "$HW_TYPE" = "c240g5" ]; then
     echo "Install machine learning stuffs.."
+    sudo apt install ubuntu-drivers-common
+    sudo ubuntu-drivers autoinstall
 fi
 
 # Mark the startup service has finished
