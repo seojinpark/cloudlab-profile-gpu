@@ -72,7 +72,7 @@ for name in node_names:
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:' + params.image
     
     # The remote file system is represented by special node.
-    fsnode = request.RemoteBlockstore("fsnode", "/data")
+    fsnode = rspec.RemoteBlockstore("fsnode", "/data")
     # This URN is displayed in the web interfaace for your dataset.
     fsnode.dataset = "urn:publicid:IDN+wisc.cloudlab.us:ramcloud-pg0+ltdataset+Pipedream"
     fsnode.rwclone = True
@@ -85,7 +85,7 @@ for name in node_names:
     iface = node.addInterface("eth0")
     lan.addInterface(iface)
     
-    fslink = request.Link("fslink")
+    fslink = rspec.Link("fslink")
     fslink.addInterface(iface)
     fslink.addInterface(fsnode.interface)
     # Special attributes for this link that we must use.
