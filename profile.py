@@ -1,5 +1,5 @@
 """
-Testing repo-based profile
+Profile for GPU servers with rcnfs and remote dataset
 
 Instructions:
     TODO
