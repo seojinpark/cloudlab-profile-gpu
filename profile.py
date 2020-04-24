@@ -61,7 +61,7 @@ if params.rcnfs == True:
     iface = node.addInterface("eth0")
     lan.addInterface(iface)
     
-    
+node_names = []    
 for i in range(1, params.num_nodes + 1):
     node_names.append("rc%02d" % i)
 
