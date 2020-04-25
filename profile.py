@@ -69,7 +69,7 @@ for i in range(1, params.num_nodes + 1):
 for name in node_names:
     node = RSpec.RawPC(name)
     
-    bs = node.Blockstore("bs","/users")
+    bs = node.Blockstore("bsUser","/users")
     bs.size = "300GB"
 
     node.hardware_type = params.type
