@@ -35,7 +35,7 @@ pc.defineParameter("rcnfs", "Setup an extra node for NFS?",
                    portal.ParameterType.BOOLEAN, True, [True, False])
                    
 pc.defineParameter("type4nfs", "Node Type for NFS server",
-                   portal.ParameterType.NODETYPE, types[0], types)
+                   portal.ParameterType.NODETYPE, types[2], types)
 
 params = pc.bindParameters()
 
