@@ -88,14 +88,15 @@ for name in node_names:
 
     iface = node.addInterface("eth0")
     lan.addInterface(iface)
-    
-    # fslink = rspec.Link("fslink")
-#     fslink.addInterface(iface)
-#     fslink.addInterface(fsnode.interface)
-    lan.addInterface(fsnode.interface)
-    # # Special attributes for this link that we must use.
-    # fslink.best_effort = True
-    # fslink.vlan_tagging = True
+
+    # lan.addInterface(fsnode.interface)
+    iface2 = node.addInterface("eth1")
+    fslink = rspec.Link("fslink")
+    fslink.addInterface(iface2)
+    fslink.addInterface(fsnode.interface)
+    # Special attributes for this link that we must use.
+    fslink.best_effort = True
+    fslink.vlan_tagging = True
 
 
 pc.printRequestRSpec(rspec)
