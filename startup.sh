@@ -112,8 +112,22 @@ done
 
 if [ "$HW_TYPE" = "c240g5" ]; then
     echo "Install machine learning stuffs.."
-    sudo apt install ubuntu-drivers-common
-    sudo ubuntu-drivers autoinstall
+    sudo apt --yes install ubuntu-drivers-common
+    # sudo ubuntu-drivers autoinstall
+    sudo apt-get --yes install freeglut3 freeglut3-dev libxi-dev libxmu-dev
+    sudo apt --yes install python3-pip
+    curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    sh Miniconda3-latest-Linux-x86_64.sh -b
+    source $HOME/miniconda3/bin/activate
+    printf '\n# add path to conda\nexport PATH="$HOME/miniconda3/bin:$PATH"\n' >> ~/.bashrc
+    conda install -y pytorch torchvision cudatoolkit=10.2 -c pytorch
+    # Install CUDA.
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+    sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+    sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+    sudo add-apt-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /"
+    sudo apt-get update
+    sudo apt-get -y install cuda
 fi
 
 # Mark the startup service has finished

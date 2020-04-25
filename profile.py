@@ -49,7 +49,7 @@ if params.rcnfs == True:
 
     # Ask for a 200GB file system mounted at /shome on rcnfs
     bs = node.Blockstore("bs", "/shome")
-    bs.size = "200GB"
+    bs.size = "400GB"
 
     node.hardware_type = params.type4nfs
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:' + params.image
@@ -68,6 +68,9 @@ for i in range(1, params.num_nodes + 1):
 
 for name in node_names:
     node = RSpec.RawPC(name)
+    
+    bs = node.Blockstore("bs","/users")
+    bs.size = "300GB"
 
     node.hardware_type = params.type
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:' + params.image
