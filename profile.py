@@ -94,7 +94,7 @@ for i in range(1, params.num_nodes + 1):
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:' + params.image
     
     # The remote file system is represented by special node.
-    fsnode = rspec.RemoteBlockstore("fsnode", "/data")
+    fsnode = rspec.RemoteBlockstore("fsnode_rc%02d" % i, "/data")
     # This URN is displayed in the web interfaace for your dataset.
     fsnode.dataset = "urn:publicid:IDN+wisc.cloudlab.us:ramcloud-pg0+ltdataset+Pipedream"
     # fsnode.rwclone = True
