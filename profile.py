@@ -62,7 +62,7 @@ if params.rcnfs == True:
     # This URN is displayed in the web interfaace for your dataset.
     nfsrbs.dataset = "urn:publicid:IDN+wisc.cloudlab.us:ramcloud-pg0+ltdataset+PipedreamNFS"
     iface2 = node.addInterface("eth1")
-    fslink = rspec.Link("fslink")
+    fslink = rspec.Link("fslink_nfsbs")
     fslink.addInterface(iface2)
     fslink.addInterface(nfsrbs.interface)
     fslink.best_effort = True
@@ -78,11 +78,13 @@ if params.rcnfs == True:
     lan.addInterface(iface)
     
     
-node_names = []    
+# node_names = []    
 for i in range(1, params.num_nodes + 1):
-    node_names.append("rc%02d" % i)
-
-for name in node_names:
+    # node_names.append("rc%02d" % i)
+# for name in node_names:
+    name = "rc%02d" % i
+    
+    
     node = RSpec.RawPC(name)
     
     bs = node.Blockstore("bsUser","/users")
@@ -107,7 +109,7 @@ for name in node_names:
 
     # lan.addInterface(fsnode.interface)
     iface2 = node.addInterface("eth1")
-    fslink = rspec.Link("fslink")
+    fslink = rspec.Link("fslink_rc%02d" % i)
     fslink.addInterface(iface2)
     fslink.addInterface(fsnode.interface)
     # Special attributes for this link that we must use.
