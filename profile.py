@@ -48,11 +48,26 @@ if params.rcnfs == True:
     node = RSpec.RawPC("rcnfs")
 
     # Ask for a 200GB file system mounted at /shome on rcnfs
-    bs = node.Blockstore("bs", "/shome")
-    bs.size = "400GB"
+    # bs = node.Blockstore("bs", "/shome")
+    # bs.size = "400GB"
 
     node.hardware_type = params.type4nfs
     node.disk_image = 'urn:publicid:IDN+emulab.net+image+emulab-ops:' + params.image
+
+
+    "urn:publicid:IDN+wisc.cloudlab.us:ramcloud-pg0+ltdataset+PipedreamNFS"
+    
+    # The remote file system is represented by special node.
+    nfsrbs = rspec.RemoteBlockstore("nfsrbs", "/shome")
+    # This URN is displayed in the web interfaace for your dataset.
+    nfsrbs.dataset = "urn:publicid:IDN+wisc.cloudlab.us:ramcloud-pg0+ltdataset+PipedreamNFS"
+    iface2 = node.addInterface("eth1")
+    fslink = rspec.Link("fslink")
+    fslink.addInterface(iface2)
+    fslink.addInterface(nfsrbs.interface)
+    fslink.best_effort = True
+    fslink.vlan_tagging = True
+    
 
     cmd_string = "sudo /local/repository/startup.sh"
     node.addService(RSpec.Execute(shell="sh", command=cmd_string))
@@ -61,6 +76,7 @@ if params.rcnfs == True:
 
     iface = node.addInterface("eth0")
     lan.addInterface(iface)
+    
     
 node_names = []    
 for i in range(1, params.num_nodes + 1):
@@ -79,7 +95,7 @@ for name in node_names:
     fsnode = rspec.RemoteBlockstore("fsnode", "/data")
     # This URN is displayed in the web interfaace for your dataset.
     fsnode.dataset = "urn:publicid:IDN+wisc.cloudlab.us:ramcloud-pg0+ltdataset+Pipedream"
-    fsnode.rwclone = True
+    # fsnode.rwclone = True
 
     cmd_string = "sudo /local/repository/startup.sh"
     node.addService(RSpec.Execute(shell="sh", command=cmd_string))
