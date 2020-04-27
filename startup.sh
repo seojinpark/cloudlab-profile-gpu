@@ -128,11 +128,19 @@ if [ "$HW_TYPE" = "c240g5" ]; then
     sudo add-apt-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /"
     sudo apt-get update
     sudo apt-get -y install cuda
+    # Create a simlink to docker..
+    sudo ln -s /data/docker /var/lib/docker
 fi
 
 # Mark the startup service has finished
 > /local/startup_service_done
 echo "Startup service finished"
+
+if [ "$HW_TYPE" = "c240g5" ]; then
+    # Install Pipedream
+    cd /data/pipedream/
+    bash setup.sh
+fi
 
 # Reboot to let the configuration take effects; this task is launched as a
 # background process and delayed 10s to allow the startup service finished.
