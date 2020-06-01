@@ -129,6 +129,7 @@ if [ "$HW_TYPE" = "c240g5" ]; then
     sudo apt-get update
     sudo apt-get -y install cuda
     # Create a simlink to docker..
+    mkdir /data/docker
     sudo ln -s /data/docker /var/lib/docker
 fi
 
