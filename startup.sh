@@ -129,13 +129,14 @@ if [ "$HW_TYPE" = "c240g5" ]; then
     sudo apt-get update
     sudo apt-get -y install cuda
     # Create a simlink to docker..
-    mkdir /data/docker
+    # mkdir /data/docker
     sudo ln -s /data/docker /var/lib/docker
 fi
 
 # Mark the startup service has finished
 > /local/startup_service_done
 echo "Startup service finished"
+date >> /local/startup_service_fullyExecuted_times.txt
 
 if [ "$HW_TYPE" = "c240g5" ]; then
     # Install Pipedream
