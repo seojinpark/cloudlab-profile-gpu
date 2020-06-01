@@ -97,7 +97,7 @@ for i in range(1, params.num_nodes + 1):
     fsnode = rspec.RemoteBlockstore("fsnode_rc%02d" % i, "/data")
     # This URN is displayed in the web interfaace for your dataset.
     fsnode.dataset = "urn:publicid:IDN+wisc.cloudlab.us:ramcloud-pg0+ltdataset+Pipedream"
-    fsnode.rwclone = True
+    # fsnode.rwclone = True
 
     cmd_string = "sudo /local/repository/startup.sh"
     node.addService(RSpec.Execute(shell="sh", command=cmd_string))
